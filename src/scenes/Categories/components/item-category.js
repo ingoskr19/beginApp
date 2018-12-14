@@ -3,7 +3,7 @@ import { Text, View, StyleSheet, Image, TouchableHighlight } from 'react-native'
 
 const ItemCategory = (props) => (
     <TouchableHighlight
-        onPress={() => {props.navigation.navigate('CatalogScreen' , { categoryId: props.category.id.toString() })}}
+        onPress={() => {props.navigation.navigate('CatalogScreen' , { category: props.category})}}
         underlayColor="#C0C0C0"
     >
         <View style={styles.container}>
@@ -27,9 +27,6 @@ const styles = StyleSheet.create({
         width: null,
         height: 150,
         marginVertical: 1,
-    },
-    content: {
-        
     },
     CategoryImage: {
         ...StyleSheet.absoluteFillObject,

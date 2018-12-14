@@ -13,6 +13,7 @@ class Catalog extends Component {
         super(props);
         this.state = {
             productList: [],
+            category: this.props.navigation.getParam("category",[])
         };
     }
 
@@ -51,6 +52,7 @@ class Catalog extends Component {
                                 addEvent={ this.props.addToCart }
                                 removeEvent={ this.props.removeFromCart }
                                 modifiedEvent = { this.modifiedEvent }
+                                category={this.state.category}
                             />
                         </ListItem>
                     );
@@ -65,7 +67,6 @@ class Catalog extends Component {
         let products = [];
         this.state.productList.forEach((item,index)=>{
             if(item._id == product._id){
-
                 switch (type){
                     case MODIFY_CANT:
                             item.cant = (item.cant) ? item.cant+cant : 1;
@@ -77,10 +78,9 @@ class Catalog extends Component {
                         if(!item.modified)
                             item.cant = 0;
                         break;
-                }
-
-                
+                }                
             }
+            item.total = product.price * product.cant;
             products.push(item);
         });
 

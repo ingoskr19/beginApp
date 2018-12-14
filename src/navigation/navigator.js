@@ -13,9 +13,6 @@ import Profile from './../scenes//Profile';
 import Contacts from './../scenes//Contacts';
 import Diary from './../scenes//Diary';
 
-import Tab1 from './../scenes/BagFul/components/tab1';
-import Tab2 from './../scenes/BagFul/components/tab2';
-import Tab3 from './../scenes/BagFul/components/tab3';
 import SideMenu from './../scenes/Menu/side-menu';
 import Auth from './../scenes/login/auth';
 import AuthLoading from './../scenes/login/auth-loading';
@@ -26,6 +23,8 @@ import CameraRollScene from './../scenes/CameraRollScene';
 import NativeBaseScene from './../scenes/NativeBase';
 import ReduxScene from './../scenes/redux';
 import DevicesScene from '../scenes/Devices';
+import ChatScene from '../scenes/Chat';
+import PaymentScene from './../scenes//PurchaseSummary';
 
  const ProfileNavigator = StackNavigator({
   ProfileScreen: {
@@ -62,98 +61,46 @@ import DevicesScene from '../scenes/Devices';
 });
 
  const BagFulNavigator = StackNavigator({
-  BagFulScreen: {
-    screen: BagFul,
-    navigationOptions: () => ({
-      title: 'BagFul'
-    }),
-    headerTitleStyle: {
-      fontSize: 26,
-    }
-  }
-}, {
-  initialRouteName: 'CategoriesScreen',
-  headerStyle: {
-    backgroundColor: '#7B1FA2',
-    borderBottomColor: '#7B1FA2'
-  },
-  headerTitleStyle: {
-    fontSize: 18,
-  },
-  headerTintColor: '#7B1FA2',
+  BagFulScreen: BagFul,
+  PaymentSceneScreen: PaymentScene,
+  ShoppingResultScreen: ShoppingResult,
 });
 
  const ProductsNavigator = StackNavigator({
-  CategoriesScreen: {
-    screen: Categories,
+  CategoriesScreen: Categories,
+  CameraScreen: {
+  screen: CameraScene,
+    navigationOptions: {
+      header: null
+    }
   },
+  CameraRollScreen: CameraRollScene,
+  CatalogScreen: Catalog,
+  ProductDetailScreen: ProductDetail,
+},
+  {
+    initialRouteName: 'CategoriesScreen',
+  }
+);
+
+const DevicesNavigator = StackNavigator({
+  DevicesScreen: DevicesScene,
   CameraScreen: {
   screen: CameraScene,
   navigationOptions: {
     header: null
   }
   },
-  CameraRollScreen: {
-  screen: CameraRollScene,
-  navigationOptions: {
-    header: null
-  }
-  },
-  CatalogScreen: Catalog,
-  ProductDetailScreen: ProductDetail,
-
-  PurchaseSummaryScreen: {
-    screen: PurchaseSummary,
-    navigationOptions: () => ({
-      title: 'Summary'
-    }),
-    headerTitleStyle: {
-      fontSize: 26,
-    }
-  },
-
-  ShoppingResultScreen: {
-    screen: ShoppingResult,
-    navigationOptions: () => ({
-      title: 'Shopping Result'
-    }),
-    headerTitleStyle: {
-      fontSize: 26,
-    }
-  }
-
-},
-  {
-    initialRouteName: 'CategoriesScreen',
-    headerStyle: {
-      backgroundColor: '#7B1FA2',
-      borderBottomColor: '#7B1FA2'
-    },
-    headerTitleStyle: {
-      fontSize: 18,
-    },
-    headerTintColor: '#7B1FA2',
-  }
-);
-
-const DevicesNavigator = StackNavigator({
-  DevicesStack: DevicesScene,
-  CameraStack: {
-  screen: CameraScene,
-  navigationOptions: {
-    header: null
-  }
-  },
-  GalleryStack: CameraRollScene,
-  PlayerStack: Player,
-  LocalizationStack: Localization,
+  GalleryScreen: CameraRollScene,
+  PlayerScreen: Player,
+  LocalizationScreen: Localization,
 },
   {
     initialRouteName: 'DevicesStack',
   }
 );
 
- const Tabs = createBottomTabNavigator({
+/* const Tabs = createBottomTabNavigator({
     Tab1: {
       screen: Tab1,
       navigationOptions: {
@@ -184,11 +131,11 @@ const DevicesNavigator = StackNavigator({
       backgroundColor: 'black'
     }
   }
-});
+});*/
 
 const Drawer = DrawerNavigator({
     Products: { screen: ProductsNavigator},
-    BagFul: { screen: Catalog},
+    Cart: { screen: BagFulNavigator},
     Profile: { screen: ProfileNavigator},
     Shopping: { screen: ShoppingResult}
 },
@@ -204,8 +151,7 @@ export const Splash = createSwitchNavigator({
   AuthLoading: AuthLoading,
   Products: Drawer,
   Profile: ProfileNavigator,
-  Tabs: Tabs,
-  Cart: BagFul,
+  Chat: ChatScene,
   NativeScene: NativeBaseScene,
   ReduxScene: ReduxScene,
   DevicesSwitch: DevicesNavigator,

@@ -2,17 +2,9 @@ import React, { Component } from 'react';
 import { Platform, ScrollView, Button, SectionList, Image } from 'react-native';
 import {Container,Content,Header, View} from 'native-base';
 import ItemCategory from './components/item-category';
-import HeaderComponent from '../NativeBase/components/header';
+import HeaderComponent from '../Components/Header/header';
 
 const categories = [
-    {
-        id: 1,
-        name: 'Dairy Products',
-        backgroundColor: '#26a69a',
-        opacity: 90,
-        description: '- Products rich in calcium',
-        photo: 'https://previews.123rf.com/images/baibaz/baibaz1603/baibaz160300046/55868581-diversos-productos-l%C3%A1cteos-frescos-en-el-fondo-de-madera.jpg'
-    },
     {
         id: 2,
         name: 'Proteins',
@@ -20,6 +12,14 @@ const categories = [
         opacity: 90,
         description: '- Delicious products rich in proteins',
         photo: 'https://ichef.bbci.co.uk/news/660/cpsprodpb/DEDF/production/_101855075_proteinas01.jpg'
+    },
+    {
+        id: 1,
+        name: 'Dairy Products',
+        backgroundColor: '#26a69a',
+        opacity: 90,
+        description: '- Products rich in calcium',
+        photo: 'https://previews.123rf.com/images/baibaz/baibaz1603/baibaz160300046/55868581-diversos-productos-l%C3%A1cteos-frescos-en-el-fondo-de-madera.jpg'
     },
     {
         id: 3,
@@ -62,7 +62,7 @@ class Categories extends Component {
     keyExtractor = (item) => item.id.toString()
     render() {
         return (
-            <Container>
+            <Container style={{backgroundColor:'white'}}>
                 <Content>
                     <ScrollView>
                         <SectionList

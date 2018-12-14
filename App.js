@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import {Splash} from './src/navigation/navigator';
+import { Splash } from './src/navigation/navigator';
 import RNLanguage from 'react-native-languages';
 import i18n from './src/i18n';
 import store from './src/redux/store';
-import {Provider} from 'react-redux';
+import { Provider } from 'react-redux';
+import { Root } from 'native-base';
 
 export default class App extends Component<> {
 
@@ -11,23 +12,25 @@ export default class App extends Component<> {
     super(props);
   }
 
-  componentWillMount(){
-    RNLanguage.addEventListener('change',this.onChangeLanguage)
+  componentWillMount() {
+    RNLanguage.addEventListener('change', this.onChangeLanguage)
   }
 
-  componentWillUnmount(){
-    RNLanguage.removeEventListener('change',this.onChangeLanguage)
+  componentWillUnmount() {
+    RNLanguage.removeEventListener('change', this.onChangeLanguage)
   }
 
-  onChangeLanguage = ({language}) => {
-    i18n.locale=language;
+  onChangeLanguage = ({ language }) => {
+    i18n.locale = language;
   }
 
   render() {
     return (
-      <Provider store={store}>
-        <Splash/>
-      </Provider>
+      <Root>
+        <Provider store={store}>
+          <Splash />
+        </Provider>
+      </Root>
     );
   }
 }

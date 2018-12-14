@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { StyleSheet, AsyncStorage } from 'react-native'
-import { Container, Content, List, Icon, Right, Text, View, Item } from 'native-base';
+import { Container, Content, List, Icon, Right, Text, View, Item, Footer, FooterTab, Button } from 'native-base';
 import LinearGradient from 'react-native-linear-gradient';
 import httpUsers from '../../services/Users/http-users';
 
@@ -14,8 +14,13 @@ const routes = [
         icon: 'apps'
     },
     {
-        screen: 'LoginStack',
-        title: 'Login',
+        screen: 'Cart',
+        title: 'Go to Cart',
+        icon: 'cart'
+    },
+    {
+        screen: 'Chat',
+        title: 'Chat',
         icon: 'person'
     },
     {
@@ -59,9 +64,9 @@ class SideMenu extends Component {
         return (
             <Container>
                 <Content>
-                    
-                    <HeaderMenu user={this.state.user} navigation={this.props.navigation}/>
-                    
+
+                    <HeaderMenu user={this.state.user} navigation={this.props.navigation} />
+
                     <List style={styles.list}
                         dataArray={routes}
                         renderRow={item => {
@@ -72,7 +77,7 @@ class SideMenu extends Component {
                     />
                 </Content>
 
-                <View style={styles.footer}>
+                <Button transparent onPress={this.singOut}>
                     <LinearGradient
                         start={{ x: 0.0, y: 0.25 }}
                         end={{ x: 0.25, y: 1.0 }}
@@ -80,15 +85,12 @@ class SideMenu extends Component {
                         colors={['#2c639e', '#053645']}
                         style={styles.linearGradient}
                     >
-                        <Item button onPress={this.singOut}>
-                            <Text button style={styles.singOut}
-                            >Logout</Text>
-                            <Right>
-                                <Icon style={styles.singOutIcon} name="exit" size={16} />
-                            </Right>
-                        </Item>
+                        <Text style={styles.singOut}>Logout</Text>
+                        <Right>
+                            <Icon style={styles.singOutIcon} name="exit" size={14} />
+                        </Right>
                     </LinearGradient>
-                </View>
+                </Button>
             </Container>
         );
     }
@@ -97,15 +99,10 @@ class SideMenu extends Component {
 const styles = StyleSheet.create({
     singOutIcon: {
         alignSelf: 'flex-end',
-        color: 'white'
-    },
-    singOutContent: {
-
+        color: '#7efb7b'
     },
     singOut: {
-        //backgroundColor: '#7efb7b',
-        fontSize: 14,
-        fontFamily: 'Gill Sans',
+        fontSize: 15,
         textAlign: 'center',
         alignSelf: 'center',
         margin: 1,
@@ -114,19 +111,10 @@ const styles = StyleSheet.create({
     },
     linearGradient: {
         flex: 1,
-        paddingLeft: 15,
-        paddingRight: 15,
         borderRadius: 5,
         flexDirection: 'row',
         alignItems: 'center',
-        justifyContent: 'space-between'
+        padding: 5,
     },
-    footer: {
-        width: 150,
-        height: 24,
-        position: 'absolute',
-        bottom: 10,
-        left: 50
-    }
 });
 export default SideMenu;

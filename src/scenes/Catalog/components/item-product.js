@@ -22,7 +22,7 @@ const ItemProduct = (props) => {
                 <CardItem header style={styles.cardHeader}>
                     <Text style={styles.productName}>{props.product.name}</Text>
                 </CardItem>
-                <TouchableHighlight onPress={() => props.navigation.navigate('ProductDetailScreen', { product: props.product })}
+                <TouchableHighlight onPress={() => props.navigation.navigate('ProductDetailScreen', {category: props.category, product: props.product })}
                     underlayColor='#626663'>
                     <CardItem>
                         {renderImage(props.product.avatar)}

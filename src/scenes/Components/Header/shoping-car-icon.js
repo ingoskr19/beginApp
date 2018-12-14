@@ -2,15 +2,15 @@ import React from 'react';
 import { Text, View, StyleSheet } from 'react-native';
 import {withNavigation} from 'react-navigation';
 import { connect } from 'react-redux';
-import { Icon } from 'native-base';
+import { Icon, Item } from 'native-base';
 const ShoppingCarIcon = props => {
     return (
-    <View style={styles.container}>
-        <Icon name="cart" style={styles.icon} size={30} onPress={()=>props.navigation.navigate('Cart')}/>
-        <View style={styles.badget}>
-            <Text style={styles.badgetText}>{props.cartItems.length}</Text>
+    <Item style={styles.container} button onPress={()=>(props.cartItems.length)?props.navigation.navigate('BagFulScreen'):null}>
+        <Icon name="cart" style={styles.icon} size={30} />
+        <View style={styles.badge}>
+            <Text style={styles.badgeText}>{props.cartItems.length}</Text>
         </View>
-    </View> 
+    </Item>
     );
 };
 
@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
     icon: {
         color: '#ffffff80'
     },
-    badget: {
+    badge: {
         position: 'absolute',
         height: 16,
         width: 16,
@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         zIndex: 1000,
     },
-    badgetText: {
+    badgeText: {
         color: '#fff',
         fontWeight: 'bold',
         fontSize: 8

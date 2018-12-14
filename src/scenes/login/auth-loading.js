@@ -1,12 +1,16 @@
 import React, { Component } from 'react';
 import { View, StyleSheet, ActivityIndicator, AsyncStorage, ImageBackground, Text } from 'react-native';
-
+import SplashScreen from 'react-native-splash-screen';
 class AuthLoading extends Component {
   constructor(props) {
     super(props);
     this.state = {
     };
     this.login();
+  }
+
+  componentDidMount(){
+    SplashScreen.hide();
   }
 
   async login() {
